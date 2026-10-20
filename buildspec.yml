@@ -1,0 +1,25 @@
+version: 0.2
+
+# Self-contained demo build: builds a small nginx image and pushes it to ECR.
+# In a real pipeline, point CodeBuild at your GitHub repo and build its Dockerfile.
+
+phases:
+  pre_build:
+    commands:
+      - echo Logging in to Amazon ECR...
+      - REGISTRY=${ECR_REPO_URL%/*}
+      - aws ecr get-login-password --region "$AWS_DEFAULT_REGION" | docker login --username AWS --password-stdin "$REGISTRY"
+  build:
+    commands:
+      - echo Building the container image...
+      - |
+        cat > Dockerfile <<'EOF'
+        FROM public.ecr.aws/nginx/nginx:latest
+        RUN echo '<h1>Deployed via AWS CodeBuild by Muhammad Ahmad</h1>' > /usr/share/nginx/html/index.html
+        EOF
+      - docker build -t "$ECR_REPO_URL:latest" .
+  post_build:
+    commands:
+      - echo Pushing the image to ECR...
+      - docker push "$ECR_REPO_URL:latest"
+      - echo Done.
