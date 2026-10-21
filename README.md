@@ -3,7 +3,9 @@
 > Containerized app on **ECS Fargate** behind an ALB, with an **ECR** registry and a **CodeBuild** CI job that builds and pushes the image — all in Terraform.
 > **Author:** Muhammad Ahmad · **IaC:** Terraform · **Cloud:** AWS
 
-![Terraform](https://img.shields.io/badge/Terraform-1.5%2B-7B42BC?logo=terraform&logoColor=white)
+![Terraform CI](https://github.com/AhmadMughal-DS/aws-ecs-fargate-cicd-terraform/actions/workflows/terraform.yml/badge.svg)
+![Terraform](https://img.shields.io/badge/Terraform-1.6%2B-7B42BC?logo=terraform&logoColor=white)
+![Security](https://img.shields.io/badge/scanned-tfsec%20%7C%20checkov-success)
 ![AWS](https://img.shields.io/badge/AWS-ECS%20Fargate%20%7C%20ECR%20%7C%20CodeBuild-FF9900?logo=amazonaws&logoColor=white)
 ![License](https://img.shields.io/badge/License-MIT-green)
 
